@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium;
+using TurnupPortalPageObjectModel_Meth.Utilities;
 
 namespace TurnupPortalPageObjectModel_Meth.Pages
 {
@@ -15,7 +16,8 @@ namespace TurnupPortalPageObjectModel_Meth.Pages
             //navigate to Administration Page to select the time and Material from the drop down
             IWebElement adminPage = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
             adminPage.Click();
-            Thread.Sleep(3000);
+            
+            Wait.WaitToBeClickable(driver, "XPath", "/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a",10);
 
             //select the time and Material from the drop down
             IWebElement timeMaterial = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));

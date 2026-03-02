@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using TurnupPortalPageObjectModel_Meth.Pages;
 
 public class Program
@@ -13,6 +14,9 @@ public class Program
         ChromeOptions options = new ChromeOptions();
         options.AddUserProfilePreference("profile.password_manager_leak_detection", false);
         driver = new ChromeDriver(options);
+
+        //Implicit Wait
+        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         //Login page object initialization and definition
         LoginPage loginPage = new LoginPage();

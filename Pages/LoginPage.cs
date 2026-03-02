@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium;
+using TurnupPortalPageObjectModel_Meth.Utilities;
 
 namespace TurnupPortalPageObjectModel_Meth.Pages
 {
@@ -13,11 +14,13 @@ namespace TurnupPortalPageObjectModel_Meth.Pages
             //Launch turnup portal
             driver.Navigate().GoToUrl("http://horse.industryconnect.io");
             driver.Manage().Window.Maximize();
-            Thread.Sleep(1000);
+           
 
             //identify username textbox and enter valid username
             IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
             usernameTextbox.SendKeys("hari");
+
+            Wait.WaitToBeVisible(driver, "Id", "Password", 7);
 
             //identify password textbox and enter valid password
             IWebElement passwordTextbox = driver.FindElement(By.Id("Password"));
@@ -26,7 +29,7 @@ namespace TurnupPortalPageObjectModel_Meth.Pages
             //identify login button and click on
             IWebElement loginButton = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/form/div[3]/input[1]"));
             loginButton.Click();
-            Thread.Sleep(2000);
+           
 
         }
     }

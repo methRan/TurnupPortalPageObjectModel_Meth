@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium;
+using TurnupPortalPageObjectModel_Meth.Utilities;
 
 namespace TurnupPortalPageObjectModel_Meth.Pages
 {
@@ -37,12 +38,13 @@ namespace TurnupPortalPageObjectModel_Meth.Pages
             IWebElement priceTextbox = driver.FindElement(By.Id("Price"));
             priceTextbox.SendKeys("23");
 
+            Wait.WaitToBeClickable(driver, "Id", "SaveButton",7);
+   
             //select files
 
             //click on save button
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
             saveButton.Click();
-            Thread.Sleep(3000);
 
             //check if time material created successfully
             IWebElement goToLastpageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
