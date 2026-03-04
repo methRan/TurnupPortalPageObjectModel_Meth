@@ -11,6 +11,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace TurnupPortalPageObjectModel_Meth.Tests
 {
+    [TestFixture]
     public  class TM_Tests : CommonDriver
     {
 
@@ -25,9 +26,6 @@ namespace TurnupPortalPageObjectModel_Meth.Tests
             options.AddUserProfilePreference("profile.password_manager_leak_detection", false);
             driver = new ChromeDriver(options);
 
-            //Implicit Wait
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
             //Login page object initialization and definition
             LoginPage loginPage = new LoginPage();
             loginPage.LoginActions(driver);
@@ -35,8 +33,9 @@ namespace TurnupPortalPageObjectModel_Meth.Tests
             //Home page object initialization and definition
             HomePage homePage = new HomePage();
             homePage.NavigateTMPage(driver);
-
             homePage.LoginVerification(driver);
+
+    
         }
         [Test]
         public void CreateTime_Test()
@@ -60,7 +59,7 @@ namespace TurnupPortalPageObjectModel_Meth.Tests
         [TearDown]
         public void CloseTestRun()
         {
-
+            driver.Quit();
         }
 
     }

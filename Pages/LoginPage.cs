@@ -14,7 +14,6 @@ namespace TurnupPortalPageObjectModel_Meth.Pages
             //Launch turnup portal
             driver.Navigate().GoToUrl("http://horse.industryconnect.io");
             driver.Manage().Window.Maximize();
-           
 
             //identify username textbox and enter valid username
             IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));

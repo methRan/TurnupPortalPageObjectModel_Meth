@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using TurnupPortalPageObjectModel_Meth.Utilities;
 
@@ -9,12 +7,11 @@ namespace TurnupPortalPageObjectModel_Meth.Pages
     public class TMPage
     {
 
-        public void CreateTimeRecord(IWebDriver driver) 
+        public void CreateTimeRecord(IWebDriver driver)
         {
             //click on create new button
             IWebElement createNew = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
             createNew.Click();
-            Thread.Sleep(1000);
 
             //select time from the dropdown
             IWebElement typeCodedropDown = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[1]/div/span[1]/span/span[2]/span"));
@@ -36,41 +33,46 @@ namespace TurnupPortalPageObjectModel_Meth.Pages
             priceTagOverlap.Click();
 
             IWebElement priceTextbox = driver.FindElement(By.Id("Price"));
-            priceTextbox.SendKeys("23");
+            priceTextbox.SendKeys("27");
 
-            Wait.WaitToBeClickable(driver, "Id", "SaveButton",7);
-   
+            //Wait.WaitToBeClickable(driver, "Id", "SaveButton", 7);
+
             //select files
 
             //click on save button
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
             saveButton.Click();
+            Thread.Sleep(1500);
 
             //check if time material created successfully
             IWebElement goToLastpageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             goToLastpageButton.Click();
+            Thread.Sleep(1500);
+
 
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (newCode.Text == "TA Program")
-            {
-                Console.WriteLine("Time record created successfully");
-            }
-            else
-            {
-                Console.WriteLine("New time has not been created");
-            }
+            Assert.That(newCode.Text == "TA Program", "New time has not been created");
+
+            //if (newCode.Text == "TA Program")
+            //{
+            //    Assert.Pass("Time record created successfully");
+            //}
+            //else
+            //{
+            //    Assert.Fail("New time has not been created");
+            //}
 
         }
 
         public void EditTimeRecord(IWebDriver driver)
-        { 
-         //edit time record
+        {
+            //edit time record
         }
 
         public void DeleteTimeRecord(IWebDriver driver)
-        { 
-         //delete time record
+        {
+            //delete time record
         }
     }
 }
